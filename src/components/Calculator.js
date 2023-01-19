@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import Display from "./Display";
 import Buttons from "./Buttons";
 import "./styles/Calculator.css";
@@ -9,7 +9,7 @@ function Calculator() {
   const [answer, setAnswer] = useState("");
 
   //input
-  const inputHandler = (event) => {
+  const inputHandler = useCallback((event) => {
     if (answer === "Invalid Input!!") return;
     let val = event.target.innerText;
 
@@ -20,7 +20,7 @@ function Calculator() {
       setInput(answer + val);
       setAnswer("");
     } else setInput(str);
-  };
+  }, [input, answer]);
 
   //Clear screen
   const clearInput = () => {
